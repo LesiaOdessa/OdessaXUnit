@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace OdessaXUnit.Tests.Components
 {
-    public class StarAdmin : ICommandRunner
+    // Class that interacts with the staradmin CLI
+    public class StarAdmin
     {
         private IEnumerable<int> _allowedExits = new[] { 0 };
 

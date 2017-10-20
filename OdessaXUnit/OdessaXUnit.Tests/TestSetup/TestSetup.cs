@@ -1,23 +1,20 @@
 ﻿using OdessaXUnit.Tests.Components;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace OdessaXUnit.Tests
 {
     public class TestSetup
     {
         readonly string databaseName;
-        private ICommandRunner CommandRunner { get; }
+        private StarAdmin StarAdmin { get; }
         private Host Host { get; }
         private Server Server { get; }
 
         public TestSetup(string databaseName)
         {
             this.databaseName = databaseName;
-            this.CommandRunner = new StarAdmin();
-            this.Host = new Host(new Database(CommandRunner, databaseName));
-            this.Server = new Server(CommandRunner);
+            this.StarAdmin = new StarAdmin();
+            this.Host = new Host(new Database(StarAdmin, databaseName));
+            this.Server = new Server(StarAdmin);
         }
 
         public TestSetup StartServer()

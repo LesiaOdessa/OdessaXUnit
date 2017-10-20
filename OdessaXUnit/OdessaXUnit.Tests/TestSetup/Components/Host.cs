@@ -9,24 +9,27 @@ namespace OdessaXUnit.Tests.Components
     public class Host
     {
         public Database Database { get; }
-        private ICommandRunner CommandRunner { get; }
+        private StarAdmin StarAdmin { get; }
 
         public Host(Database database)
         {
             this.Database = database;
-            this.CommandRunner = new StarAdmin()
+
+            var allowedExits = new Dictionary<string, int>()
             {
-                AllowedExits = new int[]
-                {
-                    KnownExitCodes.HostNotRunning,
-                    KnownExitCodes.DatabaseDoesNotExist
-                }
+                { "HostNotRunning", 10024 },
+                { "DatabaseDoesNotExist", 10002 }
+            };
+
+            this.StarAdmin = new StarAdmin()
+            {
+                AllowedExits = allowedExits.Values
             };
         }
 
         public void Stop()
         {
-            CommandRunner.Run($"-d={Database.Name} stop host");
+            StarAdmin.Run($"-d={Database.Name} stop host");
         }
     }
 }

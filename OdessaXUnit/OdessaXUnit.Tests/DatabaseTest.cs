@@ -5,14 +5,14 @@ using System;
 
 namespace OdessaXUnit.Tests
 {
-    public class DatabaseTest : BaseTest
+    public class UnitTest1 : BaseTest
     {
         [Fact]
-        public void DatabaseAccessTest()
+        public void TestMethod1()
         {
             StarcounterContext.ScheduleTransact(() =>
             {
-                Db.SQL<Person>($"SELECT c FROM {typeof(Person)} c");
+                // Any calls that require database access
             });
         }
     }

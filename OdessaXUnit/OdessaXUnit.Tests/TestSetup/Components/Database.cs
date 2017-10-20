@@ -8,24 +8,24 @@ namespace OdessaXUnit.Tests.Components
 {
     public class Database
     { 
-        private ICommandRunner CommandRunner { get; }
+        private StarAdmin StarAdmin { get; }
 
         public string Name { get; }
 
-        public Database(ICommandRunner commandRunner, string name)
+        public Database(StarAdmin starAdmin, string name)
         {
-            this.CommandRunner = commandRunner ?? throw new NullReferenceException(nameof(commandRunner));
+            this.StarAdmin = starAdmin ?? throw new NullReferenceException(nameof(starAdmin));
             this.Name = name ?? throw new NullReferenceException(nameof(name));
         }
 
         public void Delete()
         {
-            CommandRunner.Run($"-d={Name} delete --force db");
+            StarAdmin.Run($"-d={Name} delete --force db");
         }
 
         public void Create()
         {
-            CommandRunner.Run($"-d={Name} new db");
+            StarAdmin.Run($"-d={Name} new db");
         }
 
         public void Recreate()

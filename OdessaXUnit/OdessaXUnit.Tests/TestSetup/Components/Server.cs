@@ -8,16 +8,16 @@ namespace OdessaXUnit.Tests.Components
 {
     public class Server
     {
-        private ICommandRunner CommandRunner { get; }
+        private StarAdmin StarAdmin { get; }
 
-        public Server(ICommandRunner commandRunner)
+        public Server(StarAdmin starAdmin)
         {
-            this.CommandRunner = commandRunner;
+            this.StarAdmin = starAdmin;
         }
 
         public void Run()
         {
-            CommandRunner.Run("start server");
+            StarAdmin.Run("start server");
         }
     }
 }

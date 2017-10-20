@@ -5,6 +5,8 @@ namespace OdessaXUnit.Tests
 {
     public static class StarcounterContext
     {
+        // Helper for database access since it needs both
+        // ScheduleTask and Db.Transact to work
         public static void ScheduleTransact(Action action)
         {
             ScheduleTask(() => Db.Transact(action));
